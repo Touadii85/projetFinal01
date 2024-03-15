@@ -55,27 +55,7 @@
                             <td><%= compte.getId() %></td>
                             <td><%= compte.getLogin() %></td>
                             <td><%= compte.getPwd() %></td>
-                            <td>
-                                <form action="ModifierSpecialite" method="post">
-                                    <input type="hidden" name="idCompte" value="<%= compte.getId() %>">
-                                    <select name="specialite">
-                                        <%
-                                        if (specialites.isEmpty()) {
-                                        %>
-                                            <option value="">Aucune spécialité</option>
-                                        <%
-                                        } else {
-                                            for (Matiere specialite : specialites) {
-                                        %>
-                                            <option value="<%= specialite.getId() %>"><%= specialite.getNom() %></option>
-                                        <%
-                                            }
-                                        }
-                                        %>
-                                    </select>
-                                    <button type="submit">Changer</button>
-                                </form>
-                            </td>
+                            <td><%= compte.getSpecialite() %></td>
                             <td><a href="recupModif?id=<%= compte.getId() %>&login=<%= compte.getLogin() %>&pwd=<%= compte.getPwd() %>">Modifier</a></td>
                             <td><a href="ControllerSupprimer?id=<%= compte.getId() %>">Supprimer</a></td>
                         </tr>
