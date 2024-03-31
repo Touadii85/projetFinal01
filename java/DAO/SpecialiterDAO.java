@@ -125,6 +125,29 @@ public class SpecialiterDAO {
 
 	    return des;
 	}
+	
+	public ArrayList<Integer> getMatiereIdsByCompteId(int compteId) {
+        ArrayList<Integer> matiereIds = new ArrayList<>();
+        String sql = "SELECT idmatiere FROM specialiter WHERE idcompte = ?";
+        
+        try {
+            this.c.connect();
+            PreparedStatement ps = this.c.connection.prepareStatement(sql);
+            ps.setInt(1, compteId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                matiereIds.add(rs.getInt("idmatiere"));
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            // Handle exceptions appropriately
+        } finally {
+            // Close connections, handle exceptions
+        }
+
+        return matiereIds;
+    }
 
     public void modify(int idCompte, int idMatiere, int newIdMatiere) {
         try {
